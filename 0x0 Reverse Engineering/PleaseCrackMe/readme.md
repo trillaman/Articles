@@ -15,9 +15,13 @@ For test purpose and what we get displayed on trial, I just run this with some r
 As we see it's showing us some strings we could use by typing strings PleaseCrackMe in terminal but I just added this to Ghidra.
 It was good move because we saved time as main function was responsible for everything in this case (no subfunctions for generating and so on, but hey - it's marked as 1.3
 When we select main from functions on left menu we see below code:
+
+
 ![alt text](images/2.png "")
 
 We can see simple algorithm that is working in loop- taking converted to char sum of our loop index and converted to int char from nickname. Let's simplify this code!
+
+
 ![alt text](images/3.png "")
 
 Now we can see better that function and what it's doing. We can now prepare keygen for this by only copying this logic to python and replace it for proper python syntax 
@@ -36,3 +40,4 @@ For value "trilla" and number 5 it's showed us password "ywnqqf". After entering
 
 
 ![alt text](images/5.png "")
+
