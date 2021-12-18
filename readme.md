@@ -12,5 +12,6 @@ Maybe there will be also category about repairing stuff - I got few things to re
 * Networks
 * Some scripting
 * Electronics repairs
+
 **Enjoy while reading!**
 
