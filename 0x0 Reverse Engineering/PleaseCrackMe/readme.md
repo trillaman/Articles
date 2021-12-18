@@ -6,6 +6,9 @@ You can download it here - https://crackmes.one/crackme/612e85d833c5d41acedffa4f
 ***
 
 # Used software:
+* Remnux distro (it's just Ubuntu prepared for reverses and analyzing malware)
+* Ghidra
+* Python for solving and keygen
 
 
 ### Let's start...
