@@ -57,8 +57,9 @@ Now the fun part is that we don't know exactly what the hash is and hash-identif
  
 
 $var =~ /([A-Za-z0-9_-]*)/;        $var = $1;
-Above part is giving us what exactly is taken for hash so value taken and what? And regex wasn't parsing this to "sub-take" for final comparing.
- 
+Above part is giving us what exactly is taken for hash so value taken and what? 
+AND REGEX WASN'T PARSING THIS TO "SUB-TAKE" FOR FINAL COMPARING
+
 
 ![alt text](images/ipfire_6.png "") 
 
