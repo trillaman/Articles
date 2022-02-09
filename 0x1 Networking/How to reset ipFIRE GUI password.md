@@ -7,7 +7,7 @@ Recently I bought Juniper SA 2500 (old but gold) VPN to my homelab to make vpn c
 ### TLDR
 1. Generate bcrypt hash with password you want to use
 2. SSH to your ipfire appliance
-3. echo 'admin:<your bcrypted="" here="" password="">' &gt; /var/ipfire/auth/users</your>
+3. echo 'admin:bcrypted password' &gt; /var/ipfire/auth/users
 ### Below is whole process I made
 ***
 
