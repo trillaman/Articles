@@ -1,7 +1,7 @@
 # How to reset ipFire GUI password
 ***
 
-Recently I bought Juniper SA 2500 (old but gold) VPN to my homelab to make vpn connection to my another toy which is IBM X3650 M2. I needed this to make it secure and to make possible working remotely on my projects that are hosted in VM's (IBM is running proxmox). So I decided to buy this appliance but I had in mind that I need to resintall Juniper OS to something more modern. After playing with pfSense (it was killer to my needs), I tested OPNSense (which didn't even start) and I eneded with ipfire software (which is really great so far). But the problem started when I set up GUI password duuring installation and then I couldn't find place to replace that. So I started sniffing...
+Recently I bought Juniper SA 2500 (old but gold) VPN to my homelab to make vpn connection to my another toy which is IBM X3650 M2. I needed this to make it secure and to make possible working remotely on my projects that are hosted in VM's (IBM is running proxmox). I decided to buy this appliance but I had in mind that I need to reinstall Juniper OS to something more modern. After playing with pfSense (it was killer to my needs), I tested OPNSense (which didn't even start) and I eneded with ipfire software (which is really great so far). But the problem started when I set up GUI password during installation and then I couldn't find place to replace that. Then I started sniffing...
 ***
 
 ### TLDR
@@ -12,7 +12,7 @@ Recently I bought Juniper SA 2500 (old but gold) VPN to my homelab to make vpn c
 ***
 
 # First step - SSH for the win!
-So when you login to gui with some shitty password you had to input while your case to applince is opened (to access VGA output) and you couldn't copy-paste this from password manager like KeePass, you have to enable SSH connections.
+When you login to gui with some shitty password you had to input while your case to applince is opened (to access VGA output) and you couldn't copy-paste this from password manager like KeePass, you have to enable SSH connections.
  
 
 ### Second step - find whatever that is related to webserver
@@ -32,7 +32,7 @@ The last line is reveal us path used by httpd server. And when I use command "st
 In general when we are trying to login to GUI we got normal popup for Basic auth known from apache - just user and password, no fancy graphics, and of course 401 Unathorized when we click on Cancel.
  
 
-Then I focused on finding where is index.cgi and this lead me to 3 paths
+I focused on finding where is index.cgi and this lead me to 3 paths
  
 
 ![alt text](images/ipfire_3.png "") 
@@ -53,13 +53,16 @@ I cutted screenshot for clarity but we don't have to scroll so much ;)
 Folder auth is containing what we exactly need! In users file that is located there is our user and hash like "user:hash". For purpose of this material let's assume it's
  
 
-Now the fun part is that we don't know exactly what the hash is and hash-identifier from Kali Linux also didn't know, as well as other online hash type finders. So I opened https://regex101.com/ and I pasted there hash part after ":". If you ask me where I found regex to match the answer is of course in screenshot with hash function.
+Now the fun part is that we don't know exactly what the hash is and hash-identifier from Kali Linux also didn't know, as well as other online hash type finders. I opened https://regex101.com/ and I pasted there hash part after ":". If you ask me where I found regex to match the answer is of course in screenshot with hash function.
  
 
 $var =~ /([A-Za-z0-9_-]*)/;        $var = $1;
-Above part is giving us what exactly is taken for hash so value taken and what? 
-AND REGEX WASN'T PARSING THIS TO "SUB-TAKE" FOR FINAL COMPARING
+$val =~ /([\w\W]*)/; $val = $1;
+$hash->{$var} = $val;
 
+Above part is giving us what exactly is taken for hash so value taken and what? And regex wasn't parsing this to "sub-take" for final comparing.
+    Hash used here was BCRYPT. And when we compare this on some brypt generator site we can see match (bcrypt rounds doesn't matter).
+ 
 
 ![alt text](images/ipfire_6.png "") 
 
@@ -68,4 +71,3 @@ Let's generate something strong, something that keepass is suggesting us, pass i
  
 
 ### All done!
-
