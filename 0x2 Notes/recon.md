@@ -98,3 +98,8 @@ This will result with:
 
 ## Step 2 - Scanning with nmap  
 ### NMAP  
+TBD  
+
+## Step 3 - GoBuster, dirb or whatever directory finder you like
+### GoBuster  
+TBD  
